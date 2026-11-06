@@ -7,3 +7,6 @@ from sqlalchemy.ext.asyncio import Async_session, create_async_engine, async_ses
 from sqlalchemy.orm import DeclarativeBase, relationship
 
 DATABASE_URL = "sqlite + aiosqlite:///./test.db"
+
+class Post(DeclarativeBase):
+    __tablename__ = "posts"
