@@ -43,7 +43,7 @@ async def upload_file(
                 )
             )
 
-            if upload_result.response,http_status_code == 200:
+            if upload_result.response.http_status_code == 200:
     
                 post = Post(
                     caption = caption,
@@ -55,6 +55,13 @@ async def upload_file(
                 await session.commit()
                 await session.refresh(post)
                 return post
+
+    except Exception as e:
+        raise HTTPException(status_code = 500, detail = str(e))
+    finally:
+        if temp_file_path and os.path.exists(temp_file_path):
+            os.unlink(temp_file_path)
+        file.file.close()
 
 @app.get("/feed")
 async def get_feed(
