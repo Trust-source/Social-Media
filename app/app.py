@@ -47,9 +47,9 @@ async def upload_file(
     
                 post = Post(
                     caption = caption,
-                    url = "dummyurl",
-                    file_type = "photo",
-                    file_name = "dummy name"
+                    url = upload_result.url,
+                    file_type = "video" if file.content_type.startswith("video/") else "image",
+                    file_name = upload_result.name
                 )
                 session.add(post)
                 await session.commit()
