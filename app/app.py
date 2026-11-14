@@ -34,6 +34,7 @@ async def upload_file(
             temp_file_path = temp_file.name
             shutil.copyfileobj(file.file, temp_file)
 
+        
             upload_result = imagekit.upload_file(
                 file = open(temp_file_path, "rb"),
                 file_name = file.filename,
@@ -43,7 +44,9 @@ async def upload_file(
                 )
             )
 
-            if upload_result.response.http_status_code == 200:
+
+
+            if upload_result.response_metadata.http_status_code == 200:
     
                 post = Post(
                     caption = caption,
