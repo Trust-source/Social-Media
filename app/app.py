@@ -89,3 +89,4 @@ async def get_feed(
     return {"posts": posts_data }
 
 
+@app.delete("/")
